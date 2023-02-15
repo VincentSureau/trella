@@ -13,5 +13,7 @@
             "email": "vincentsureau5@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "symfony/var-dumper": "^6.2"
+    }
 }

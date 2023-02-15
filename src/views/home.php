@@ -17,44 +17,44 @@
                    Bienvenue sur ton <strong>Trellä</strong>!
                 </p>
                 <div class="tile is-ancestor">
-                    <div class="tile is-parent is-4">
+                    <a class="tile is-parent is-4" href="?page=board">
                         <article class="tile is-child notification is-primary">
                             <p class="title">Projet 1</p>
                             <p class="subtitle">Description 1</p>
                         </article>
-                    </div>
-                    <div class="tile is-parent is-4">
+                    </a>
+                    <a class="tile is-parent is-4" href="?page=board">
                         <article class="tile is-child notification is-primary">
-                        <p class="title">Projet 2</p>
-                            <p class="subtitle">Description 2</p>
+                            <p class="title">Projet 1</p>
+                            <p class="subtitle">Description 1</p>
                         </article>
-                    </div>
-                    <div class="tile is-parent is-4">
+                    </a>
+                    <a class="tile is-parent is-4" href="?page=board">
                         <article class="tile is-child notification is-primary">
-                            <p class="title">Projet 3</p>
-                            <p class="subtitle">Description 3</p>
+                            <p class="title">Projet 1</p>
+                            <p class="subtitle">Description 1</p>
                         </article>
-                    </div>
+                    </a>
                 </div>
                 <div class="tile is-ancestor">
-                    <div class="tile is-parent is-4">
+                    <a class="tile is-parent is-4" href="?page=board">
                         <article class="tile is-child notification is-primary">
-                            <p class="title">Projet 4</p>
-                            <p class="subtitle">Description 4</p>
+                            <p class="title">Projet 1</p>
+                            <p class="subtitle">Description 1</p>
                         </article>
-                    </div>
-                    <div class="tile is-parent is-4">
+                    </a>
+                    <a class="tile is-parent is-4" href="?page=board">
                         <article class="tile is-child notification is-primary">
-                            <p class="title">Projet 5</p>
-                            <p class="subtitle">Description 5</p>
+                            <p class="title">Projet 1</p>
+                            <p class="subtitle">Description 1</p>
                         </article>
-                    </div>
-                    <div class="tile is-parent is-4">
+                    </a>
+                    <a class="tile is-parent is-4" href="?page=board">
                         <article class="tile is-child notification is-primary">
-                            <p class="title">Projet 6</p>
-                            <p class="subtitle">Description 6</p>
+                            <p class="title">Projet 1</p>
+                            <p class="subtitle">Description 1</p>
                         </article>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
