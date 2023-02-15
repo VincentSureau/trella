@@ -19,16 +19,16 @@
 
                 <form class="py-5" action="" method="POST">
                     <div class="field">
-                        <label class="label">Titre du projet</label>
+                        <label for="title" class="label">Titre du projet</label>
                         <div class="control">
-                            <input class="input" type="text" placeholder="Titre">
+                            <input id="title" name="title" class="input" type="text" placeholder="Titre">
                         </div>
                     </div>
                         
                     <div class="field">
-                        <label class="label">Description</label>
+                        <label for="description" class="label">Description</label>
                         <div class="control">
-                            <textarea class="textarea" placeholder="Description"></textarea>
+                            <textarea id="description" name="description" class="textarea" placeholder="Description"></textarea>
                         </div>
                     </div>
                     

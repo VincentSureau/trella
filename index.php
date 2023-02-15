@@ -5,7 +5,7 @@ require_once "vendor/autoload.php";
 $page = $_GET["page"] ?? 'projects';
 
 $pages = [
-    'projects' => 'home',
+    'projects' => 'ProjectsController',
     'board' => 'project',
     '404' => "404"
 ];
@@ -15,4 +15,4 @@ if(!isset($pages[$page])) {
 }
 
 
-include "src/views/".$pages[$page].".php";
+include "src/controllers/".$pages[$page].".php";
