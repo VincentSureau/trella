@@ -16,6 +16,27 @@
                 <p class="subtitle">
                    Bienvenue sur ton <strong>Trellä</strong>!
                 </p>
+
+                <form class="py-5" action="" method="POST">
+                    <div class="field">
+                        <label class="label">Titre du projet</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Titre">
+                        </div>
+                    </div>
+                        
+                    <div class="field">
+                        <label class="label">Description</label>
+                        <div class="control">
+                            <textarea class="textarea" placeholder="Description"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="control">
+                        <button class="button is-link">Ajouter</button>
+                    </div>
+                </form>
+
                 <div class="tile is-ancestor">
                     <a class="tile is-parent is-4" href="?page=board">
                         <article class="tile is-child notification is-primary">
