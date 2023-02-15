@@ -1,0 +1,17 @@
+{
+    "name": "vincent/trello",
+    "description": "A trello clone",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Vincent\\Trello\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vincent Sureau",
+            "email": "vincentsureau5@gmail.com"
+        }
+    ],
+    "require": {}
+}
