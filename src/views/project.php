@@ -10,6 +10,19 @@
         <?php include "_navbar.php" ?>
 
         <main>
+            <div class="container">
+                <form class="py-5" action="" method="POST">
+                    <div class="field has-addons">
+                        <div class="control">
+                            <input id="title" name="title" class="input" type="text" placeholder="Titre">
+                        </div>
+                        <div class="control">
+                            <button class="button is-link">Ajouter une liste</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
             <div class="columns is-flex is-justify-content-center">
                 <div class="column is-3 ">
                     <div class="card has-background-light mgr-medium">
