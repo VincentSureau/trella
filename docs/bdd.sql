@@ -20,13 +20,13 @@ CREATE TABLE `Card` (
 );
 
 CREATE TABLE `List` (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `project_id` int
 );
 
 CREATE TABLE `Comment` (
-  `id` int PRIMARY KEY,
+  `id` int PRIMARY KEY AUTO_INCREMENT,
   `user_id` int,
   `card_id` int,
   `content` text
