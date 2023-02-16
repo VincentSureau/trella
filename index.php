@@ -6,7 +6,7 @@ $page = $_GET["page"] ?? 'projects';
 
 $pages = [
     'projects' => 'ProjectsController',
-    'board' => 'project',
+    'board' => 'BoardController',
     '404' => "404"
 ];
 

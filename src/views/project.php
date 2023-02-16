@@ -10,84 +10,31 @@
         <?php include "_navbar.php" ?>
 
         <main>
-                <div class="columns is-flex is-justify-content-center">
-                    <div class="column is-3 ">
-                        <div class="card has-background-light mgr-medium">
-                            <header class="card-header">
-                                <p class="card-header-title">
-                                    Titre 1
-                                </p>
-                            </header>
-                            <div class="card-content">
-                                <div class="notification has-background-white">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                </div>
-
-                                <div class="notification has-background-white">
-                                Primar lorem ipsum dolor sit amet, consectetur
-                                </div>
-
-                                <div class="notification has-background-white">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto alias in recusandae nisi. Et, quas!
-                                </div>
-
-                                </div>
+            <div class="columns is-flex is-justify-content-center">
+                <div class="column is-3 ">
+                    <div class="card has-background-light mgr-medium">
+                        <header class="card-header">
+                            <p class="card-header-title">
+                                Titre 1
+                            </p>
+                        </header>
+                        <div class="card-content">
+                            <div class="notification has-background-white">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                             </div>
-                        </div>
-                    </div>
-                
 
-                    <div class="column is-3">
-                        <div class="card has-background-light">
-                            <header class="card-header">
-                                <p class="card-header-title">
-                                    Titre 2
-                                </p>
-                            </header>
-                            <div class="card-content">
-                                <div class="notification has-background-white">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                </div>
-
-                                <div class="notification has-background-white">
-                                Primar lorem ipsum dolor sit amet, consectetur
-                                </div>
-
-                                <div class="notification has-background-white">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto alias in recusandae nisi. Et, quas!
-                                </div>
-
-                                </div>
+                            <div class="notification has-background-white">
+                            Primar lorem ipsum dolor sit amet, consectetur
                             </div>
-                        </div>
-                
 
-
-                    <div class="column is-3">
-                        <div class="card has-background-light">
-                            <header class="card-header">
-                                <p class="card-header-title">
-                                    Titre 3
-                                </p>
-                            </header>
-                            <div class="card-content">
-                                <div class="notification has-background-white">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                </div>
-
-                                <div class="notification has-background-white">
-                                Primar lorem ipsum dolor sit amet, consectetur
-                                </div>
-
-                                <div class="notification has-background-white">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto alias in recusandae nisi. Et, quas!
-                                </div>
-
-                                </div>
+                            <div class="notification has-background-white">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto alias in recusandae nisi. Et, quas!
                             </div>
+
                         </div>
                     </div>
                 </div>
+            </div>
     </main>
        
     </body>
