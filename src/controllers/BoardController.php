@@ -1,17 +1,16 @@
 <?php
 
+require_once __DIR__ . '/../models/Projet.php';
 require_once __DIR__ . '/../models/List.php';
 
-dump($_POST);
-
+$project_id = $_GET['id'];
 $title = $_POST['title'] ?? null;
 
 if(!empty($title)) {
-    create($title);
+    createList($title, $project_id);
 }
 
+$project = find($project_id);
+$lists = findByProject($project_id);
 
-// $projects = array_chunk(findAll(), 3);
-$lists = findAll();
-dump($lists);
 include __DIR__ .'/../views/project.php';
