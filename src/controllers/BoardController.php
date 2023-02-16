@@ -1,16 +1,36 @@
 <?php
 
-require_once __DIR__ . '/../models/Projet.php';
-require_once __DIR__ . '/../models/List.php';
+namespace App\Trello\controllers;
 
-$project_id = $_GET['id'];
-$title = $_POST['title'] ?? null;
+use App\Trello\models\ListModel;
+use App\Trello\models\ProjectModel;
 
-if(!empty($title)) {
-    createList($title, $project_id);
+class BoardController
+{
+    public function index()
+    {
+        $listModel = new ListModel();
+        $projectModel = new ProjectModel();
+        
+        $project_id = $_GET['id'];
+        $title = $_POST['title'] ?? null;
+        
+        if(!empty($title)) {
+            $listModel->create($title, $project_id);
+        }
+        
+        $project = $projectModel->find($project_id);
+        $lists = $listModel->findByProject($project_id);
+
+        $this->render('project', [
+            'project' => $project,
+            'lists' => $lists
+        ]);
+    }
+
+    private function render($view, $data = [])
+    {
+        extract($data);
+        include __DIR__ .'/../views/'.$view.'.php';
+    }
 }
-
-$project = find($project_id);
-$lists = findByProject($project_id);
-
-include __DIR__ .'/../views/project.php';

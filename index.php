@@ -12,7 +12,9 @@ $pages = [
 
 if(!isset($pages[$page])) {
     $page = 404;
+} else {
+    $controller_name = 'App\Trello\controllers\\' . $pages[$page];
+    $controller = new $controller_name();
+    $controller->index();
+   
 }
-
-
-include "src/controllers/".$pages[$page].".php";

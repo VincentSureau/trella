@@ -1,17 +1,17 @@
 <?php
 
-require_once __DIR__ . '/../models/Projet.php';
-
-dump($_POST);
+use App\Trello\models\ProjectModel;
 
 $title = $_POST['title'] ?? null;
 $description = $_POST['description'] ?? null;
 
+$projectModel = new ProjectModel();
+
 if(!empty($title)) {
-    create($title, $description);
+    $projectModel->create($title, $description);
 }
 
 
-$projects = array_chunk(findAll(), 3);
+$projects = array_chunk($projectModel->findAll(), 3);
 
 include __DIR__ .'/../views/home.php';
