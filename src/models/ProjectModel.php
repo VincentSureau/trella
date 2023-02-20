@@ -1,17 +1,22 @@
 <?php
-
 namespace App\Trello\models;
 
 require_once __DIR__ . '/../utils/database.php';
 
+use App\Trello\utils\database;
+
 class ProjectModel
 {
-    private $pdo;
-
+    // Propriété qui stocke la connexion PDO à la base de données
+    public $pdo;
+    
+    // Constructeur de la classe qui initialise la connexion à la base de données en appelant la fonction getConnection() définie dans le fichier database.php
     public function __construct()
     {
-        $this->pdo = getConnection();
+        // Je récupére l'instance PDO créée par la fonction getConnection()
+        $this->pdo = database::getInstance();
     }
+
 
     public function create($title, $description = null)
     {

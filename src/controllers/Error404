@@ -1,0 +1,15 @@
+<?php
+namespace App\trello_controllers;
+
+class Error404
+{
+    public function index()
+    {
+        $this->render('404');
+    }
+    private function render($view, $data = [])
+    {
+        extract($data);
+        include __DIR__ .'/../views/'.$view.'.php';
+    }
+}
