@@ -1,17 +1,33 @@
 <?php
 
+namespace App\Trello\controllers;
+
 use App\Trello\models\ProjectModel;
 
-$title = $_POST['title'] ?? null;
-$description = $_POST['description'] ?? null;
+class ProjectsController
+{
+    public function index()
+    {
+        $title = $_POST['title'] ?? null;
+        $description = $_POST['description'] ?? null;
+        
+        $projectModel = new ProjectModel();
+        
+        if(!empty($title)) {
+            $projectModel->create($title, $description);
+        }
+        
+        
+        $projects = array_chunk($projectModel->findAll(), 3);
 
-$projectModel = new ProjectModel();
+        $this->render('home', [
+            'projects' => $projects
+        ]);
+    }
 
-if(!empty($title)) {
-    $projectModel->create($title, $description);
+    private function render($view, $data = [])
+    {
+        extract($data);
+        include __DIR__ .'/../views/'.$view.'.php';
+    }
 }
-
-
-$projects = array_chunk($projectModel->findAll(), 3);
-
-include __DIR__ .'/../views/home.php';
