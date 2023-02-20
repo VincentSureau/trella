@@ -1,5 +1,5 @@
 <?php
-namespace App\Trello\controllers;
+
 use App\Trello\models\ProjectModel;
 
 class ProjectsController
@@ -17,11 +17,9 @@ class ProjectsController
         
         
         $projects = array_chunk($projectModel->findAll(), 3);
-        
-
 
         $this->render('home', [
-            'projects' => $project
+            'projects' => $projects
         ]);
     }
 
