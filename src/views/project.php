@@ -32,7 +32,7 @@
                         <div class="card has-background-light mgr-medium">
                             <header class="card-header">
                                 <p class="card-header-title">
-                                    <?= $list['title'] ?>
+                                    <?= $list->getTitle() ?>
                                 </p>
                             </header>
                             <div class="card-content">
