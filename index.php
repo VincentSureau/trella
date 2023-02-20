@@ -16,5 +16,4 @@ if(!isset($pages[$page])) {
     $controller_name = 'App\Trello\controllers\\' . $pages[$page];
     $controller = new $controller_name();
     $controller->index();
-   
 }

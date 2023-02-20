@@ -2,19 +2,12 @@
 
 namespace App\Trello\controllers;
 
-class Error404Controller
+use App\Trello\controllers\AbstractController;
+
+class Error404Controller extends AbstractController
 {
     public function index()
     {
-
-        
         $this->render('404');
-
-    }
-
-    private function render($view, $data = [])
-    {
-        extract($data);
-        include __DIR__ .'/../views/'.$view.'.php';
     }
 }

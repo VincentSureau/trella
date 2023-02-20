@@ -3,10 +3,11 @@
 namespace App\Trello\controllers;
 
 use App\Trello\models\ProjectModel;
+use App\Trello\controllers\AbstractController;
 
-class ProjectsController
+class ProjectsController extends AbstractController
 {
-    public function index()
+    public function projects()
     {
         $title = $_POST['title'] ?? null;
         $description = $_POST['description'] ?? null;
@@ -23,11 +24,5 @@ class ProjectsController
         $this->render('home', [
             'projects' => $projects
         ]);
-    }
-
-    private function render($view, $data = [])
-    {
-        extract($data);
-        include __DIR__ .'/../views/'.$view.'.php';
     }
 }

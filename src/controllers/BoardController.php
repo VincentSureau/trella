@@ -4,8 +4,9 @@ namespace App\Trello\controllers;
 
 use App\Trello\models\ListModel;
 use App\Trello\models\ProjectModel;
+use App\Trello\controllers\AbstractController;
 
-class BoardController
+class BoardController extends AbstractController
 {
     public function index()
     {
@@ -26,11 +27,5 @@ class BoardController
             'project' => $project,
             'lists' => $lists
         ]);
-    }
-
-    private function render($view, $data = [])
-    {
-        extract($data);
-        include __DIR__ .'/../views/'.$view.'.php';
     }
 }
