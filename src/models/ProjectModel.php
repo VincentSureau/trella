@@ -2,7 +2,7 @@
 
 namespace App\Trello\models;
 
-require_once __DIR__ . '/../utils/database.php';
+use App\Trello\utils\Database;
 
 class ProjectModel
 {
@@ -10,7 +10,7 @@ class ProjectModel
 
     public function __construct()
     {
-        $this->pdo = getConnection();
+        $this->pdo = Database::getConnection();
     }
 
     public function create($title, $description = null)
