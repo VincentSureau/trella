@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Trello\controllers;
-
 use App\Trello\models\ProjectModel;
 
 class ProjectsController
