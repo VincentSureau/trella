@@ -48,6 +48,17 @@ class ListModel
         return $lists;
     }
 
+    
+    public function delete($list_id, $project_id)
+    {
+        $sql = "DELETE FROM `List` WHERE `project_id` = :project_id AND `id` = :list_id;";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->bindParam(':project_id', $project_id, PDO::PARAM_INT);
+        $pdoStatement->bindParam(':list_id', $list_id, PDO::PARAM_INT);
+        $result = $pdoStatement->execute();
+        return $result;
+    }
+
     /**
      * Get the value of id
      */ 

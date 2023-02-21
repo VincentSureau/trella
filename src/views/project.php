@@ -31,8 +31,9 @@
                     <div class="column is-3 ">
                         <div class="card has-background-light mgr-medium">
                             <header class="card-header">
-                                <p class="card-header-title">
+                                <p class="card-header-title is-justify-content-space-between">
                                     <?= $list->getTitle() ?>
+                                    <a href="?page=delete_list&listId=<?= $list->getId() ?>&projectId=<?= $list->getProjectId() ?>" class="delete"></a>
                                 </p>
                             </header>
                             <div class="card-content">

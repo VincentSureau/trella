@@ -7,7 +7,8 @@ $page = $_GET["page"] ?? 'projects';
 $pages = [
     'projects' => 'ProjectsController',
     'board' => 'BoardController',
-    '404' => "Error404Controller"
+    '404' => "Error404Controller",
+    "delete_list" => 'DeleteListController'
 ];
 
 if(!isset($pages[$page])) {
