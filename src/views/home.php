@@ -39,10 +39,10 @@
                 <?php foreach($projects as $chunk): ?>
                     <div class="tile is-ancestor">
                         <?php foreach($chunk as $project): ?>
-                            <a class="tile is-parent is-4" href="?page=board&id=<?= $project['id'] ?>">
+                            <a class="tile is-parent is-4" href="?page=board&id=<?= $project->getId() ?>">
                                 <article class="tile is-child notification is-primary">
-                                    <p class="title"><?= $project['title'] ?></p>
-                                    <p class="subtitle"><?= $project['description'] ?></p>
+                                    <p class="title"><?= $project->getTitle() ?></p>
+                                    <p class="subtitle"><?= $project->getDescription() ?></p>
                                 </article>
                             </a>
                         <?php endforeach ?>

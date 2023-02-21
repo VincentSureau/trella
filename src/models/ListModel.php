@@ -34,14 +34,15 @@ class ListModel
         $sql = "SELECT * FROM `List`;";
         $pdoStatement = $this->pdo->prepare($sql);
         $result = $pdoStatement->execute();
-        $lists = $pdoStatement->fetchAll();
+        $lists = $pdoStatement->fetchAll(\PDO::FETCH_CLASS, self::class);
         return $lists;
     }
     
     public function findByProject($project_id)
     {
-        $sql = "SELECT * FROM `List` WHERE `project_id` = $project_id;";
+        $sql = "SELECT * FROM `List` WHERE `project_id` = :project_id;";
         $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->bindParam(':project_id', $project_id, PDO::PARAM_INT);
         $result = $pdoStatement->execute();
         $lists = $pdoStatement->fetchAll(\PDO::FETCH_CLASS, self::class);
         return $lists;
