@@ -8,7 +8,8 @@ $pages = [
     'projects' => 'ProjectsController',
     'board' => 'BoardController',
     '404' => "Error404Controller",
-    "delete_list" => 'DeleteListController'
+    "delete_list" => 'DeleteListController',
+    "delete_project" => 'DeleteProjectController'
 ];
 
 if(!isset($pages[$page])) {
