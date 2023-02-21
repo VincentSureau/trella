@@ -23,7 +23,6 @@ class DeleteProjectController extends AbstractController
             $projectModel->delete($project_id);
         }
         
-        header('Location: ?page=projects');
-        exit();
+        $this->redirect('?page=projects');
     }
 }
