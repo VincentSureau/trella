@@ -10,5 +10,11 @@ abstract class AbstractController
         include __DIR__ .'/../views/'.$view.'.php';
     }
 
+    protected function redirect($route)
+    {
+        header('Location: ' . $route);
+        exit();
+    }
+
     abstract public function index();
 }

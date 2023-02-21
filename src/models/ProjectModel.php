@@ -49,6 +49,15 @@ class ProjectModel
         return $project;
     }
 
+    public function delete($project_id)
+    {
+        $sql = "DELETE FROM `Project` WHERE `id` = :project_id;";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->bindParam(':project_id', $project_id, PDO::PARAM_INT);
+        $result = $pdoStatement->execute();
+        return $result;
+    }
+
     /**
      * Get the value of id
      */ 

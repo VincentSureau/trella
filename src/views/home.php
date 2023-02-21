@@ -41,6 +41,12 @@
                         <?php foreach($chunk as $project): ?>
                             <a class="tile is-parent is-4" href="?page=board&id=<?= $project->getId() ?>">
                                 <article class="tile is-child notification is-primary">
+                                    <form>
+                                        <input type="hidden" name="page" value="delete_project">
+                                        <input type="hidden" name="projectId" value="<?= $project->getId() ?>">
+                                        <button type="submit" class="delete"></button>
+                                    </form>
+
                                     <p class="title"><?= $project->getTitle() ?></p>
                                     <p class="subtitle"><?= $project->getDescription() ?></p>
                                 </article>
