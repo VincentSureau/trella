@@ -8,7 +8,7 @@ use App\Trello\controllers\AbstractController;
 
 class DeleteProjectController extends AbstractController
 {
-    public function index()
+    public function index() : void
     {
         $projectModel = new ProjectModel();
         $listModel = new ListModel();

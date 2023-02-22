@@ -4,5 +4,5 @@ namespace App\Trello\controllers;
 
 interface ControllerInterface
 {
-    public function index();
+    public function index(): void;
 }

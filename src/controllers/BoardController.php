@@ -8,7 +8,7 @@ use App\Trello\controllers\AbstractController;
 
 class BoardController extends AbstractController
 {
-    public function index()
+    public function index() : void
     {
         $listModel = new ListModel();
         $projectModel = new ProjectModel();

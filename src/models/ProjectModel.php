@@ -20,7 +20,7 @@ class ProjectModel
         $this->pdo = Database::getConnection();
     }
 
-    public function create($title, $description = null)
+    public function create($title, $description = null) : bool
     {
         $sql = "INSERT INTO `Project` (`id`, `description`, `title`, `user_id`) VALUES (NULL, :description, :title, NULL);";
         $pdoStatement = $this->pdo->prepare($sql);
@@ -30,16 +30,17 @@ class ProjectModel
         return $result;
     }
     
-    public function findAll()
+    public function findAll() : array
     {
         $sql = "SELECT * FROM `Project`;";
         $pdoStatement = $this->pdo->prepare($sql);
         $result = $pdoStatement->execute();
         $projects = $pdoStatement->fetchAll(\PDO::FETCH_CLASS, self::class);
+
         return $projects;
     }
     
-    public function find($id)
+    public function find(int $id) : self|null
     {
         $sql = "SELECT * FROM `Project` WHERE `id` = :id;";
         $pdoStatement = $this->pdo->prepare($sql);
@@ -49,7 +50,7 @@ class ProjectModel
         return $project;
     }
 
-    public function delete($project_id)
+    public function delete(int $project_id) : bool
     {
         $sql = "DELETE FROM `Project` WHERE `id` = :project_id;";
         $pdoStatement = $this->pdo->prepare($sql);
@@ -61,7 +62,7 @@ class ProjectModel
     /**
      * Get the value of id
      */ 
-    public function getId()
+    public function getId() : int
     {
         return $this->id;
     }
@@ -71,7 +72,7 @@ class ProjectModel
      *
      * @return  self
      */ 
-    public function setId($id)
+    public function setId(int $id) : self
     {
         $this->id = $id;
 
@@ -81,7 +82,7 @@ class ProjectModel
     /**
      * Get the value of title
      */ 
-    public function getTitle()
+    public function getTitle() : string
     {
         return $this->title;
     }
@@ -91,7 +92,7 @@ class ProjectModel
      *
      * @return  self
      */ 
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
 
@@ -101,7 +102,7 @@ class ProjectModel
     /**
      * Get the value of description
      */ 
-    public function getDescription()
+    public function getDescription() : string
     {
         return $this->description;
     }
@@ -111,7 +112,7 @@ class ProjectModel
      *
      * @return  self
      */ 
-    public function setDescription($description)
+    public function setDescription(string $description) : self
     {
         $this->description = $description;
 

@@ -7,7 +7,7 @@ use App\Trello\controllers\AbstractController;
 
 class ProjectsController extends AbstractController
 {
-    public function index()
+    public function index() : void
     {
         $title = $_POST['title'] ?? null;
         $description = $_POST['description'] ?? null;

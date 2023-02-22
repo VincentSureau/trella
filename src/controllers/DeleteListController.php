@@ -8,7 +8,7 @@ use App\Trello\controllers\AbstractController;
 
 class DeleteListController extends AbstractController
 {
-    public function index()
+    public function index() : void
     {
         $listModel = new ListModel();
         
