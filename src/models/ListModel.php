@@ -3,6 +3,7 @@ namespace App\Trello\models;
 
 use PDO;
 use App\Trello\utils\Database;
+use App\Trello\models\CardModel;
 
 class ListModel
 {
@@ -12,6 +13,7 @@ class ListModel
     private $id;
     private $title;
     private $project_id;
+    private $cards = null;
 
     // Constructeur de la classe qui initialise la connexion à la base de données en appelant la fonction getConnection() définie dans le fichier database.php
     public function __construct()
@@ -115,6 +117,32 @@ class ListModel
     public function setProjectId($project_id)
     {
         $this->project_id = $project_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of cards
+     */ 
+    public function getCards()
+    {
+        if($this->cards === null) {
+            // je les récupère dans la base de données
+            $cardModel = new cardModel();
+            $this->cards = $cardModel->findByList($this->id);
+        }
+
+        return $this->cards;
+    }
+
+    /**
+     * Set the value of cards
+     *
+     * @return  self
+     */ 
+    public function setCards($cards)
+    {
+        $this->cards = $cards;
 
         return $this;
     }
