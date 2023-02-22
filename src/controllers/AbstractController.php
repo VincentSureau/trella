@@ -2,7 +2,9 @@
 
 namespace App\Trello\controllers;
 
-abstract class AbstractController
+use App\Trello\controllers\ControllerInterface;
+
+abstract class AbstractController implements ControllerInterface
 {
     protected function render($view, $data = [])
     {
