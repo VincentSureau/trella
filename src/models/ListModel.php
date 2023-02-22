@@ -19,7 +19,7 @@ class ListModel
         $this->pdo = Database::getConnection();
     }
 
-    public function create($title, $project_id)
+    public function create($title, $project_id) : bool
     {
         $sql = "INSERT INTO `List` (`id`, `title`, `project_id`) VALUES (NULL, :title, :project_id);";
         $pdoStatement = $this->pdo->prepare($sql);
@@ -29,7 +29,7 @@ class ListModel
         return $result;
     }
     
-    public function findAll()
+    public function findAll() : array
     {
         $sql = "SELECT * FROM `List`;";
         $pdoStatement = $this->pdo->prepare($sql);
@@ -38,7 +38,7 @@ class ListModel
         return $lists;
     }
     
-    public function findByProject($project_id)
+    public function findByProject($project_id) : array
     {
         $sql = "SELECT * FROM `List` WHERE `project_id` = :project_id;";
         $pdoStatement = $this->pdo->prepare($sql);
@@ -49,7 +49,7 @@ class ListModel
     }
 
     
-    public function delete($list_id, $project_id)
+    public function delete($list_id, $project_id) : bool
     {
         $sql = "DELETE FROM `List` WHERE `project_id` = :project_id AND `id` = :list_id;";
         $pdoStatement = $this->pdo->prepare($sql);
@@ -62,7 +62,7 @@ class ListModel
     /**
      * Get the value of id
      */ 
-    public function getId()
+    public function getId() : int
     {
         return $this->id;
     }
@@ -72,7 +72,7 @@ class ListModel
      *
      * @return  self
      */ 
-    public function setId($id)
+    public function setId(int $id) : self
     {
         $this->id = $id;
 
@@ -82,7 +82,7 @@ class ListModel
     /**
      * Get the value of title
      */ 
-    public function getTitle()
+    public function getTitle() : string
     {
         return ucwords(strtolower($this->title));
     }
@@ -92,7 +92,7 @@ class ListModel
      *
      * @return  self
      */ 
-    public function setTitle($title)
+    public function setTitle(string $title): self
     {
         $this->title = $title;
 
@@ -102,7 +102,7 @@ class ListModel
     /**
      * Get the value of project_id
      */ 
-    public function getProjectId()
+    public function getProjectId() : int
     {
         return $this->project_id;
     }
@@ -112,7 +112,7 @@ class ListModel
      *
      * @return  self
      */ 
-    public function setProjectId($project_id)
+    public function setProjectId(int $project_id) : self
     {
         $this->project_id = $project_id;
 

@@ -10,7 +10,7 @@ class Database
     private $pdo = null;
     private static $_instance;
 
-    public function getConfig()
+    public function getConfig() : array
     {
         $config = parse_ini_file(__DIR__ . '/../../config.ini');
     
@@ -45,7 +45,7 @@ class Database
     // on va plus faire $database = new Database();
     // $pdo = $database->getConnection();
     // Database::getConnection();
-    public static function getConnection()
+    public static function getConnection() : PDO
     {
         if(self::$_instance === null)
         {
