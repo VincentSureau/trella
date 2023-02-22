@@ -37,18 +37,23 @@
                                 </p>
                             </header>
                             <div class="card-content">
-                                <div class="notification has-background-white">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                </div>
-    
-                                <div class="notification has-background-white">
-                                Primar lorem ipsum dolor sit amet, consectetur
-                                </div>
-    
-                                <div class="notification has-background-white">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto alias in recusandae nisi. Et, quas!
-                                </div>
-    
+                                <?php foreach($list->getCards() as $card): ?>
+                                    <div class="notification has-background-white">
+                                        <?= $card->getTitle() ?>
+                                    </div>
+                                <?php endforeach ?>
+                                <form class="py-5" action="?page=add_card" method="POST">
+                                    <input type="hidden" name="listId" value="<?= $list->getId() ?>">
+                                    <input type="hidden" name="projectId" value="<?= $list->getProjectId() ?>">
+                                    <div class="field has-addons">
+                                        <div class="control">
+                                            <input name="title" class="input" type="text" placeholder="Titre">
+                                        </div>
+                                        <div class="control">
+                                            <button class="button is-link">Ajouter</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
