@@ -9,7 +9,7 @@ use App\Trello\models\CardModel;
 
     class DeleteCardController extends AbstractController
     {
-        public function index()
+        public function index(): void
         {
             $cardModel = new CardModel();
             

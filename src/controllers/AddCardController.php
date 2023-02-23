@@ -2,12 +2,12 @@
 namespace App\Trello\controllers;
 
 
-use App\Trello\controllers\AbstractController;
 use App\Trello\models\CardModel;
+use App\Trello\controllers\AbstractController;
 
-class AddcardController extends AbstractController
+class AddCardController extends AbstractController
 {
-    public function index()
+    public function index(): void
     {
 
         $cardModel = new CardModel();
