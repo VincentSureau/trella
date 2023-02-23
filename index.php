@@ -12,7 +12,7 @@ $pages = [
     '404' => "Error404Controller",
     "delete_list" => 'DeleteListController',
     "delete_project" => 'DeleteProjectController',
-    "add_card"=>'AddcardController',
+    "add_card"=>'AddCardController',
     "delete_card" => 'DeleteCardController'
 ];
 
