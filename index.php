@@ -12,7 +12,8 @@ $pages = [
     '404' => "Error404Controller",
     "delete_list" => 'DeleteListController',
     "delete_project" => 'DeleteProjectController',
-    "add_card"=>'AddcardController'
+    "add_card"=>'AddcardController',
+    "delete_card" => 'DeleteCardController'
 ];
 
 if(!isset($pages[$page])) {

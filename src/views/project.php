@@ -39,6 +39,7 @@
                             <div class="card-content">
                                 <?php foreach($list->getCards() as $card): ?>
                                     <div class="notification has-background-white">
+                                        <a href="?page=delete_card&cardId=<?= $card->getId()?>&listId=<?= $list->getId() ?>&projectId=<?= $list->getProjectId()?>" class="delete"></a>
                                         <?= $card->getTitle() ?>
                                     </div>
                                 <?php endforeach ?>

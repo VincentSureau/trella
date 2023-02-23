@@ -19,6 +19,6 @@ class DeleteListController extends AbstractController
             $listModel->delete($list_id, $project_id);
         }
         
-        $this->redirect('?page=board&id='.$project_id);
+       $this->redirect('?page=board&id='.$project_id);
     }
 }

@@ -17,6 +17,7 @@ class AddcardController extends AbstractController
         $list_id = $_POST['listId'];
         $project_id = $_POST['projectId'];
 
+        
         if(!empty($title) && !empty($list_id))  {
             $card = $cardModel->create($title, $list_id);
         }
