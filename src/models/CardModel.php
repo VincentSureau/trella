@@ -42,6 +42,16 @@ class CardModel
         return $cards;
     }
 
+    public function delete($list_id, $card_id)
+    {
+        $sql = "DELETE FROM `Card` WHERE `list_id` = :list_id AND `id` = :card_id;";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->bindParam(':list_id', $list_id, PDO::PARAM_INT);
+        $pdoStatement->bindParam(':card_id', $card_id, PDO::PARAM_INT);
+        $result = $pdoStatement->execute();
+        return $result;
+    }
+
     /**
      * Get the value of id
      */ 
