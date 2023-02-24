@@ -13,7 +13,7 @@ class BoardController extends AbstractController
         $listModel = new ListModel();
         $projectModel = new ProjectModel();
         
-        $project_id = $_GET['id'];
+        $project_id = $this->getParam('project_id');
         $title = $_POST['title'] ?? null;
         
         if(!empty($title)) {

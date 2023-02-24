@@ -39,7 +39,7 @@
                 <?php foreach($projects as $chunk): ?>
                     <div class="tile is-ancestor">
                         <?php foreach($chunk as $project): ?>
-                            <a class="tile is-parent is-4" href="?page=board&id=<?= $project->getId() ?>">
+                            <a class="tile is-parent is-4" href="<?= $router->generate('board_index', ['project_id' => $project->getId()]); ?>">
                                 <article class="tile is-child notification is-primary">
                                     <form>
                                         <input type="hidden" name="page" value="delete_project">
