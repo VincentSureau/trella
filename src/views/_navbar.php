@@ -1,7 +1,7 @@
 <?php dump($router) ?>
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="/trello">
+    <a class="navbar-item" href=<?= $router->generate('home') ?>>
         Trellä
     </a>
 
@@ -14,7 +14,7 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="/trello">
+      <a class="navbar-item" href=<?= $router->generate('home') ?>>
         Accueil
       </a>
     </div>

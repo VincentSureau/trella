@@ -22,6 +22,6 @@ class AddCardController extends AbstractController
             $card = $cardModel->create($title, $list_id);
         }
 
-        $this->redirect('?page=board&id='.$project_id);
+        $this->redirect('board_index', ['project_id'=>$project_id]);
     }
 }

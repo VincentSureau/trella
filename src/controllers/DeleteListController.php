@@ -12,13 +12,14 @@ class DeleteListController extends AbstractController
     {
         $listModel = new ListModel();
         
-        $project_id = $_GET['projectId'];
-        $list_id = $_GET['listId'];
+        $list_id = $this->getParam('list_id');
         
-        if(!empty($project_id) && !empty($list_id)) {
-            $listModel->delete($list_id, $project_id);
+        $list = $listModel->find($list_id);
+
+        if(!empty($list)) {
+            $listModel->delete($list_id, $list->getProjectId());
         }
         
-       $this->redirect('?page=board&id='.$project_id);
+        $this->redirect('board_index',['project_id'=>$list->getProjectId()]);
     }
 }

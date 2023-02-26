@@ -9,13 +9,13 @@ $router = new AltoRouter();
 $router->setBasePath('/trello');
 
 $router->map('GET|POST', '/', 'ProjectsController', 'home');
-$router->map('GET', '/board/[i:project_id]', 'BoardController', 'board_index');
+$router->map('GET|POST', '/board/[i:project_id]', 'BoardController', 'board_index');
 $router->map('POST', '/board/add', 'ProjectsController', 'board_add');
-$router->map('GET', '/board/delete', 'DeleteProjectController', 'board_delete');
-$router->map('POST', '/list/add', 'BoardController', 'list_add');
-$router->map('GET', '/list/delete', 'DeleteListController', 'list_delete');
-$router->map('POST', '/card/add', 'AddCardController', 'card_add');
-$router->map('POST', '/card/delete', 'DeleteCardController', 'card_delete');
+$router->map('POST', '/board/[i:project_id]/delete', 'DeleteProjectController', 'board_delete');
+$router->map('POST', '/board/[i:project_id]/list/add', 'BoardController', 'list_add');
+$router->map('GET', '/board/[i:project_id]/list/[i:list_id]/delete', 'DeleteListController', 'list_delete');
+$router->map('POST', '/board/[i:project_id]/list/[i:list_id]/card/add', 'AddCardController', 'card_add');
+$router->map('GET', '/board/[i:project_id]/list/[i:list_id]/card/[i:card_id]/delete', 'DeleteCardController', 'card_delete');
 
 $match = $router->match();
 $controller_name = $match["target"] ?? "Error404Controller";

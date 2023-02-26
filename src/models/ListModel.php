@@ -49,8 +49,17 @@ class ListModel
         $lists = $pdoStatement->fetchAll(\PDO::FETCH_CLASS, self::class);
         return $lists;
     }
-
     
+    public function find($id) : self
+    {
+        $sql = "SELECT * FROM `List` WHERE `id` = :id;";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->bindParam(':id', $id, PDO::PARAM_INT);
+        $result = $pdoStatement->execute();
+        $list = $pdoStatement->fetchObject(self::class);
+        return $list;
+    }
+
     public function delete($list_id, $project_id) : bool
     {
         $sql = "DELETE FROM `List` WHERE `project_id` = :project_id AND `id` = :list_id;";

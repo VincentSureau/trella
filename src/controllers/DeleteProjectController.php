@@ -13,8 +13,8 @@ class DeleteProjectController extends AbstractController
         $projectModel = new ProjectModel();
         $listModel = new ListModel();
 
-        $project_id = $_GET['projectId'];
-        
+        $project_id = $this->getParam("project_id");
+
         if(!empty($project_id)) {
             $lists = $listModel->findByProject($project_id);
             foreach($lists as $list) {
@@ -23,6 +23,6 @@ class DeleteProjectController extends AbstractController
             $projectModel->delete($project_id);
         }
         
-        $this->redirect('?page=projects');
+        $this->redirect('home');
     }
 }

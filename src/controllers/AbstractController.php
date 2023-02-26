@@ -23,9 +23,9 @@ abstract class AbstractController implements ControllerInterface
         include __DIR__ .'/../views/'.$view.'.php';
     }
 
-    protected function redirect($route) : void
+    protected function redirect($route,$params = [], $queryParams = []) : void
     {
-        header('Location: ' . $route);
+        header('Location: ' . $this->router->generate($route, $params) . "?" . http_build_query($queryParams));
         exit();
     }
 
