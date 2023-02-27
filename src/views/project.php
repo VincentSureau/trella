@@ -33,17 +33,17 @@
                             <header class="card-header">
                                 <p class="card-header-title is-justify-content-space-between">
                                     <?= $list->getTitle() ?>
-                                    <a href="?page=delete_list&listId=<?= $list->getId() ?>&projectId=<?= $list->getProjectId() ?>" class="delete"></a>
+                                    <a href="<?= $router->generate('list_delete', ['project_id' => $project->getId(),'list_id' => $list->getId()]) ?>" class="delete"></a>
                                 </p>
                             </header>
                             <div class="card-content">
                                 <?php foreach($list->getCards() as $card): ?>
                                     <div class="notification has-background-white">
-                                        <a href="?page=delete_card&cardId=<?= $card->getId()?>&listId=<?= $list->getId() ?>&projectId=<?= $list->getProjectId()?>" class="delete"></a>
+                                        <a href="<?= $router->generate('card_delete', ['project_id'=> $project->getId(), 'list_id' => $list->getId(), 'card_id' => $card->getId()]) ?>" class="delete"></a>
                                         <?= $card->getTitle() ?>
                                     </div>
                                 <?php endforeach ?>
-                                <form class="py-5" action="?page=add_card" method="POST">
+                                <form class="py-5" action="<?= $router->generate("card_add", ['project_id' => $list->getProjectId(), 'list_id' => $list->getId()]) ?>" method="POST">
                                     <input type="hidden" name="listId" value="<?= $list->getId() ?>">
                                     <input type="hidden" name="projectId" value="<?= $list->getProjectId() ?>">
                                     <div class="field has-addons">

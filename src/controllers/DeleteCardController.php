@@ -13,15 +13,15 @@ use App\Trello\models\CardModel;
         {
             $cardModel = new CardModel();
             
-            $project_id = $_GET['projectId'];
-            $list_id = $_GET['listId'];
-            $card_id = $_GET['cardId'];
+            $project_id = $this->getParam('project_id');
+            $list_id = $this->getParam('list_id');
+            $card_id = $this->getParam('card_id');
 
             if(!empty($card_id) && !empty($list_id)) {
                 $cardModel->delete($list_id, $card_id);
             }
             
-           $this->redirect('?page=board&id='.$project_id);
+           $this->redirect('board_index',['project_id'=>$project_id]);
         }
     }
 

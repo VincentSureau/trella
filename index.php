@@ -1,31 +1,31 @@
 <?php
 
+use \AltoRouter;
 use App\Trello\controllers\ControllerInterface;
 
 require_once "vendor/autoload.php";
 
-$page = $_GET["page"] ?? 'projects';
+$router = new AltoRouter();
+$router->setBasePath('/trello');
 
-$pages = [
-    'projects' => 'ProjectsController',
-    'board' => 'BoardController',
-    '404' => "Error404Controller",
-    "delete_list" => 'DeleteListController',
-    "delete_project" => 'DeleteProjectController',
-    "add_card"=>'AddCardController',
-    "delete_card" => 'DeleteCardController'
-];
+$router->map('GET|POST', '/', 'ProjectsController', 'home');
+$router->map('GET|POST', '/board/[i:project_id]', 'BoardController', 'board_index');
+$router->map('POST', '/board/add', 'ProjectsController', 'board_add');
+$router->map('POST', '/board/[i:project_id]/delete', 'DeleteProjectController', 'board_delete');
+$router->map('POST', '/board/[i:project_id]/list/add', 'BoardController', 'list_add');
+$router->map('GET', '/board/[i:project_id]/list/[i:list_id]/delete', 'DeleteListController', 'list_delete');
+$router->map('POST', '/board/[i:project_id]/list/[i:list_id]/card/add', 'AddCardController', 'card_add');
+$router->map('GET', '/board/[i:project_id]/list/[i:list_id]/card/[i:card_id]/delete', 'DeleteCardController', 'card_delete');
 
-if(!isset($pages[$page])) {
-    $page = 404;
-}
+$match = $router->match();
+$controller_name = $match["target"] ?? "Error404Controller";
 
-$controller_name = 'App\Trello\controllers\\' . $pages[$page];
+$controller_name = 'App\Trello\controllers\\' . $controller_name;
 
 if(!is_subclass_of($controller_name, ControllerInterface::class))
 {
     throw new \Exception("Erreur: le controller " . $controller_name . ' doit implémenter l\'interface ' . ControllerInterface::class);
 }
 
-$controller = new $controller_name();
+$controller = new $controller_name($match['params'] ?? [], $router);
 $controller->index();
