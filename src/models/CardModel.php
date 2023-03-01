@@ -48,7 +48,7 @@ class CardModel
 
     public function findByList($list_id)
     {
-        $sql = "SELECT * FROM `Card` WHERE `list_id` = :list_id;";
+        $sql = "SELECT * FROM `Card` WHERE `list_id` = :list_id  ORDER BY `Card`.`order` ASC;";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->bindParam(':list_id', $list_id, PDO::PARAM_INT);
         $result = $pdoStatement->execute();

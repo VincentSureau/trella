@@ -17,7 +17,7 @@ $router->map('GET', '/board/[i:project_id]/list/[i:list_id]/delete', 'DeleteList
 $router->map('POST', '/board/[i:project_id]/list/[i:list_id]/card/add', 'AddCardController', 'card_add');
 $router->map('GET', '/board/[i:project_id]/list/[i:list_id]/card/[i:card_id]/delete', 'DeleteCardController', 'card_delete');
 $router->map('POST', '/list/update_order', 'UpdateListOrderController', 'list_update_order');
-
+$router->map('POST', '/card/update_order', 'UpdateCardOrderController', 'card_update_order');
 
 $match = $router->match();
 $controller_name = $match["target"] ?? "Error404Controller";
