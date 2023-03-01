@@ -5,8 +5,10 @@ use App\Trello\controllers\ControllerInterface;
 
 require_once "vendor/autoload.php";
 
+$config = parse_ini_file(__DIR__ . '/config.ini');
+
 $router = new AltoRouter();
-$router->setBasePath('/trello');
+$router->setBasePath($config['BASE_PATH']);
 
 $router->map('GET|POST', '/', 'ProjectsController', 'home');
 $router->map('GET|POST', '/board/[i:project_id]', 'BoardController', 'board_index');
