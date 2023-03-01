@@ -66,6 +66,16 @@ class CardModel
         return $result;
     }
 
+    public function updateOrder($card_id, $order): bool
+    {
+        $sql = "UPDATE `Card` SET `order` = :order WHERE `Card`.`id` = :card_id;";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->bindParam(':card_id', $card_id, PDO::PARAM_INT);
+        $pdoStatement->bindParam(':order', $order, PDO::PARAM_INT);
+        $result = $pdoStatement->execute();
+        return $result;
+    }
+
     /**
      * Get the value of id
      */ 
