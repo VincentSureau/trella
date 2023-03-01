@@ -83,6 +83,16 @@ class ListModel
         return $result;
     }
 
+    public function updateOrder($list_id, $order): bool
+    {
+        $sql = "UPDATE `List` SET `order` = :order WHERE `List`.`id` = :list_id;";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->bindParam(':list_id', $list_id, PDO::PARAM_INT);
+        $pdoStatement->bindParam(':order', $order, PDO::PARAM_INT);
+        $result = $pdoStatement->execute();
+        return $result;
+    }
+
     /**
      * Get the value of id
      */ 

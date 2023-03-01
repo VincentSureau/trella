@@ -23,6 +23,13 @@ abstract class AbstractController implements ControllerInterface
         include __DIR__ .'/../views/'.$view.'.php';
     }
 
+    protected function sendJson($data)
+    {
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        exit;
+    }
+
     protected function redirect($route,$params = [], $queryParams = []) : void
     {
         header('Location: ' . $this->router->generate($route, $params) . "?" . http_build_query($queryParams));

@@ -29,7 +29,7 @@
 
             <div class="columns is-flex is-justify-content-center sortable-lists">
                 <?php foreach($lists as $list): ?>
-                    <div class="column is-3 ">
+                    <div data-id="<?= $list->getId() ?>" class="column is-3 sortable-list">
                         <div class="card has-background-light mgr-medium">
                             <header class="card-header">
                                 <p class="card-header-title is-justify-content-space-between">
@@ -67,11 +67,35 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
         <script>
+            // je génère mon url pour modifier la route
+            const update_order_url = "<?= $router->generate('list_update_order') ?>";
+            console.log(update_order_url);
+            // je rends mes cartes sortables
             $( ".sortable-cards" ).sortable({
                 connectWith: ".sortable-cards"
             }).disableSelection();
+            // je rends mes listes sortables
             $( ".sortable-lists" ).sortable({
-                // connectWith: ".sortable"
+                update: function(event, ui) {
+                    // je récupère les listes qui sont les enfants de .sortable-lists
+                    const lists = $(event.target).children();
+                    // je fais une boucle sur toutes les listes
+                    for(let i = 0; i < lists.length; i++) {
+                        console.log(lists[i])
+                        // je récupère le data-id
+                        const listId = $(lists[i]).data('id');
+                        // je calcule le nouvel ordre de chaque liste
+                        const order = i + 1;
+                        $.ajax({
+                            method: "POST",
+                            url: update_order_url,
+                            data: { list_id: listId, order: order }
+                        })
+                        .done(function( msg ) {
+                            console.log(msg);
+                        });
+                    }
+                }
             }).disableSelection();
         </script>
     </body>
