@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 16 fév. 2023 à 16:39
+-- Généré le : mer. 01 mars 2023 à 09:24
 -- Version du serveur : 8.0.32-0ubuntu0.22.04.2
 -- Version de PHP : 8.1.2-1ubuntu2.10
 
@@ -31,7 +31,8 @@ CREATE TABLE `Card` (
   `id` int NOT NULL,
   `list_id` int DEFAULT NULL,
   `title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_general_ci
+  `description` text COLLATE utf8mb4_general_ci,
+  `order` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -56,7 +57,8 @@ CREATE TABLE `Comment` (
 CREATE TABLE `List` (
   `id` int NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `project_id` int DEFAULT NULL
+  `project_id` int DEFAULT NULL,
+  `order` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -109,7 +111,7 @@ ALTER TABLE `Comment`
 --
 ALTER TABLE `List`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `project_id` (`project_id`);
+  ADD KEY `List_ibfk_1` (`project_id`);
 
 --
 -- Index pour la table `Project`
@@ -134,7 +136,7 @@ ALTER TABLE `User`
 -- AUTO_INCREMENT pour la table `Card`
 --
 ALTER TABLE `Card`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `Comment`
@@ -146,13 +148,13 @@ ALTER TABLE `Comment`
 -- AUTO_INCREMENT pour la table `List`
 --
 ALTER TABLE `List`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT pour la table `Project`
 --
 ALTER TABLE `Project`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT pour la table `User`
@@ -168,7 +170,7 @@ ALTER TABLE `User`
 -- Contraintes pour la table `Card`
 --
 ALTER TABLE `Card`
-  ADD CONSTRAINT `Card_ibfk_1` FOREIGN KEY (`list_id`) REFERENCES `List` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `Card_ibfk_1` FOREIGN KEY (`list_id`) REFERENCES `List` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT;
 
 --
 -- Contraintes pour la table `Comment`
@@ -181,7 +183,7 @@ ALTER TABLE `Comment`
 -- Contraintes pour la table `List`
 --
 ALTER TABLE `List`
-  ADD CONSTRAINT `List_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `Project` (`id`);
+  ADD CONSTRAINT `List_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `Project` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT;
 
 --
 -- Contraintes pour la table `Project`
