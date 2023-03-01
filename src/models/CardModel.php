@@ -15,6 +15,7 @@ class CardModel
     private $id;
     private $title;
     private $list_id;
+    private $order;
 
     // Constructeur de la classe qui initialise la connexion à la base de données en appelant la fonction getConnection() définie dans le fichier database.php
     public function __construct()
@@ -22,12 +23,25 @@ class CardModel
         $this->pdo = Database::getConnection();
     }
 
+
+    private function calculOrder(int $list_id): int
+    {
+        $sql = "Select MAX(`order`) FROM `Card`  WHERE `list_id` = :list_id;";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->bindParam(':list_id', $list_id, PDO::PARAM_INT);
+        $result = $pdoStatement->execute();
+        $currentMaxOrder = $pdoStatement->fetchColumn();
+        return $currentMaxOrder + 1;
+    }
+
     public function create(string $title, int $list_id): bool
     {
-        $sql = "INSERT INTO `Card` (`id`, `title`, `list_id`) VALUES (NULL, :title, :list_id);";
+        $order = $this->calculOrder($list_id);
+        $sql = "INSERT INTO `Card` (`id`, `title`, `list_id`, `order`) VALUES (NULL, :title, :list_id, :order);";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->bindParam(':list_id', $list_id, PDO::PARAM_INT);
         $pdoStatement->bindParam(':title', $title, PDO::PARAM_STR);
+        $pdoStatement->bindParam(':order', $order, PDO::PARAM_INT);
         $result = $pdoStatement->execute();
         return $result;
     }
