@@ -1,9 +1,7 @@
 <?php
-
-use \AltoRouter;
-use App\Trello\controllers\ControllerInterface;
-
 require_once "vendor/autoload.php";
+
+use App\Trello\controllers\ControllerInterface;
 
 $config = parse_ini_file(__DIR__ . '/config.ini');
 
@@ -32,5 +30,5 @@ if(!is_subclass_of($controller_name, ControllerInterface::class))
     throw new \Exception("Erreur: le controller " . $controller_name . ' doit implémenter l\'interface ' . ControllerInterface::class);
 }
 
-$controller = new $controller_name($match['params'] ?? [], $router);
+$controller = new $controller_name($router, $match['params'] ?? []);
 $controller->index();
