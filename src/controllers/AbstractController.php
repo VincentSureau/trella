@@ -10,7 +10,7 @@ abstract class AbstractController implements ControllerInterface
     protected $params;
     protected $router;
 
-    public function __construct(array $params = [], AltoRouter $router)
+    public function __construct(AltoRouter $router, array $params = [])
     {
         $this->params = $params;
         $this->router = $router;
