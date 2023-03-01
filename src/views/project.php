@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Accueil !</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     </head>
     <body>
         <?php include "_navbar.php" ?>
@@ -26,7 +27,7 @@
                 </form>
             </div>
 
-            <div class="columns is-flex is-justify-content-center">
+            <div class="columns is-flex is-justify-content-center sortable-lists">
                 <?php foreach($lists as $list): ?>
                     <div class="column is-3 ">
                         <div class="card has-background-light mgr-medium">
@@ -37,12 +38,14 @@
                                 </p>
                             </header>
                             <div class="card-content">
-                                <?php foreach($list->getCards() as $card): ?>
-                                    <div class="notification has-background-white">
-                                        <a href="<?= $router->generate('card_delete', ['project_id'=> $project->getId(), 'list_id' => $list->getId(), 'card_id' => $card->getId()]) ?>" class="delete"></a>
-                                        <?= $card->getTitle() ?>
-                                    </div>
-                                <?php endforeach ?>
+                                <div class="sortable-cards">
+                                    <?php foreach($list->getCards() as $card): ?>
+                                        <div class="notification has-background-white">
+                                            <a href="<?= $router->generate('card_delete', ['project_id'=> $project->getId(), 'list_id' => $list->getId(), 'card_id' => $card->getId()]) ?>" class="delete"></a>
+                                            <?= $card->getTitle() ?>
+                                        </div>
+                                    <?php endforeach ?>
+                                </div>
                                 <form class="py-5" action="<?= $router->generate("card_add", ['project_id' => $list->getProjectId(), 'list_id' => $list->getId()]) ?>" method="POST">
                                     <input type="hidden" name="listId" value="<?= $list->getId() ?>">
                                     <input type="hidden" name="projectId" value="<?= $list->getProjectId() ?>">
@@ -61,6 +64,15 @@
                 <?php endforeach ?>
             </div>
         </main>
-       
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+        <script>
+            $( ".sortable-cards" ).sortable({
+                connectWith: ".sortable-cards"
+            }).disableSelection();
+            $( ".sortable-lists" ).sortable({
+                // connectWith: ".sortable"
+            }).disableSelection();
+        </script>
     </body>
 </html>
