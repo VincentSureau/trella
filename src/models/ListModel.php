@@ -14,6 +14,7 @@ class ListModel
     private $title;
     private $project_id;
     private $cards = null;
+    private $order;
 
     // Constructeur de la classe qui initialise la connexion à la base de données en appelant la fonction getConnection() définie dans le fichier database.php
     public function __construct()
@@ -21,12 +22,24 @@ class ListModel
         $this->pdo = Database::getConnection();
     }
 
-    public function create($title, $project_id) : bool
+    private function calculOrder(int $project_id): int
     {
-        $sql = "INSERT INTO `List` (`id`, `title`, `project_id`) VALUES (NULL, :title, :project_id);";
+        $sql = "Select MAX(`order`) FROM `List`  WHERE `project_id` = :project_id;";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->bindParam(':project_id', $project_id, PDO::PARAM_INT);
+        $result = $pdoStatement->execute();
+        $currentMaxOrder = $pdoStatement->fetchColumn();
+        return $currentMaxOrder + 1;
+    }
+
+    public function create(string $title, int $project_id): bool
+    {
+        $order = $this->calculOrder($project_id);
+        $sql = "INSERT INTO `List` (`id`, `title`, `project_id`, `order`) VALUES (NULL, :title, :project_id, :order);";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->bindParam(':title', $title, PDO::PARAM_STR);
         $pdoStatement->bindParam(':project_id', $project_id, PDO::PARAM_INT);
+        $pdoStatement->bindParam(':order', $order, PDO::PARAM_INT);
         $result = $pdoStatement->execute();
         return $result;
     }
@@ -42,7 +55,7 @@ class ListModel
     
     public function findByProject($project_id) : array
     {
-        $sql = "SELECT * FROM `List` WHERE `project_id` = :project_id;";
+        $sql = "SELECT * FROM `List` WHERE `project_id` = :project_id ORDER BY `List`.`order` ASC;";
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->bindParam(':project_id', $project_id, PDO::PARAM_INT);
         $result = $pdoStatement->execute();
@@ -66,6 +79,16 @@ class ListModel
         $pdoStatement = $this->pdo->prepare($sql);
         $pdoStatement->bindParam(':project_id', $project_id, PDO::PARAM_INT);
         $pdoStatement->bindParam(':list_id', $list_id, PDO::PARAM_INT);
+        $result = $pdoStatement->execute();
+        return $result;
+    }
+
+    public function updateOrder($list_id, $order): bool
+    {
+        $sql = "UPDATE `List` SET `order` = :order WHERE `List`.`id` = :list_id;";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->bindParam(':list_id', $list_id, PDO::PARAM_INT);
+        $pdoStatement->bindParam(':order', $order, PDO::PARAM_INT);
         $result = $pdoStatement->execute();
         return $result;
     }
