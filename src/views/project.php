@@ -38,7 +38,7 @@
                                 </p>
                             </header>
                             <div class="card-content">
-                                <div class="sortable-cards">
+                                <div class="sortable-cards py-3">
                                     <?php foreach($list->getCards() as $card): ?>
                                         <div data-id="<?= $card->getId() ?>" class="notification has-background-white">
                                             <a href="<?= $router->generate('card_delete', ['project_id'=> $project->getId(), 'list_id' => $list->getId(), 'card_id' => $card->getId()]) ?>" class="delete"></a>
@@ -70,6 +70,7 @@
             // je génère mon url pour modifier la route
             const update_list_order_url = "<?= $router->generate('list_update_order') ?>";
             const update_card_order_url = "<?= $router->generate('card_update_order') ?>";
+            const update_card_list_url = "<?= $router->generate('card_update_list') ?>";
             // je rends mes cartes sortables
             $( ".sortable-cards" ).sortable({
                 connectWith: ".sortable-cards",
@@ -78,7 +79,6 @@
                     const cards = $(event.target).children();
                     // je fais une boucle sur toutes les cards
                     for(let i = 0; i < cards.length; i++) {
-                        console.log(cards[i])
                         // je récupère le data-id
                         const cardId = $(cards[i]).data('id');
                         // je calcule le nouvel ordre de chaque card
@@ -92,6 +92,20 @@
                             console.log(msg);
                         });
                     }
+                },
+                receive: function( event, ui ) {
+                    console.log('receive event',event, ui);
+                    const listId = $(event.target).closest('.sortable-list').data('id');
+                    const cardId = $(ui.item[0]).data('id');
+                    console.log(listId, cardId)
+                    $.ajax({
+                        method: "POST",
+                        url: update_card_list_url,
+                        data: { list_id: listId, card_id: cardId }
+                    })
+                    .done(function( msg ) {
+                        console.log(msg);
+                    });
                 }
             }).disableSelection();
             // je rends mes listes sortables

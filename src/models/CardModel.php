@@ -76,6 +76,16 @@ class CardModel
         return $result;
     }
 
+    public function updateList($card_id, $list_id): bool
+    {
+        $sql = "UPDATE `Card` SET `list_id` = :list_id WHERE `Card`.`id` = :card_id;";
+        $pdoStatement = $this->pdo->prepare($sql);
+        $pdoStatement->bindParam(':card_id', $card_id, PDO::PARAM_INT);
+        $pdoStatement->bindParam(':list_id', $list_id, PDO::PARAM_INT);
+        $result = $pdoStatement->execute();
+        return $result;
+    }
+
     /**
      * Get the value of id
      */ 
