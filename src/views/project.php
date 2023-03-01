@@ -40,7 +40,7 @@
                             <div class="card-content">
                                 <div class="sortable-cards">
                                     <?php foreach($list->getCards() as $card): ?>
-                                        <div class="notification has-background-white">
+                                        <div data-id="<?= $card->getId() ?>" class="notification has-background-white">
                                             <a href="<?= $router->generate('card_delete', ['project_id'=> $project->getId(), 'list_id' => $list->getId(), 'card_id' => $card->getId()]) ?>" class="delete"></a>
                                             <?= $card->getTitle() ?>
                                         </div>
@@ -68,11 +68,31 @@
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
         <script>
             // je génère mon url pour modifier la route
-            const update_order_url = "<?= $router->generate('list_update_order') ?>";
-            console.log(update_order_url);
+            const update_list_order_url = "<?= $router->generate('list_update_order') ?>";
+            const update_card_order_url = "<?= $router->generate('card_update_order') ?>";
             // je rends mes cartes sortables
             $( ".sortable-cards" ).sortable({
-                connectWith: ".sortable-cards"
+                connectWith: ".sortable-cards",
+                update: function(event, ui) {
+                    // je récupère les cards qui sont les enfants de .sortable-cards
+                    const cards = $(event.target).children();
+                    // je fais une boucle sur toutes les cards
+                    for(let i = 0; i < cards.length; i++) {
+                        console.log(cards[i])
+                        // je récupère le data-id
+                        const cardId = $(cards[i]).data('id');
+                        // je calcule le nouvel ordre de chaque card
+                        const order = i + 1;
+                        $.ajax({
+                            method: "POST",
+                            url: update_card_order_url,
+                            data: { card_id: cardId, order: order }
+                        })
+                        .done(function( msg ) {
+                            console.log(msg);
+                        });
+                    }
+                }
             }).disableSelection();
             // je rends mes listes sortables
             $( ".sortable-lists" ).sortable({
@@ -88,7 +108,7 @@
                         const order = i + 1;
                         $.ajax({
                             method: "POST",
-                            url: update_order_url,
+                            url: update_list_order_url,
                             data: { list_id: listId, order: order }
                         })
                         .done(function( msg ) {
