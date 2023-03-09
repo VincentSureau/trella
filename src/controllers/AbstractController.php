@@ -3,6 +3,7 @@
 namespace App\Trello\controllers;
 
 use AltoRouter;
+use App\Trello\Application;
 use App\Trello\controllers\ControllerInterface;
 
 abstract class AbstractController implements ControllerInterface
@@ -10,10 +11,10 @@ abstract class AbstractController implements ControllerInterface
     protected $params;
     protected $router;
 
-    public function __construct(AltoRouter $router, array $params = [])
+    public function __construct(Application $application, array $params = [])
     {
         $this->params = $params;
-        $this->router = $router;
+        $this->router = $application->getRouter();
     }
 
     protected function render($view, $data = []): void
