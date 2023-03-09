@@ -3,24 +3,29 @@
 namespace App\Trello\controllers;
 
 use AltoRouter;
+use App\Trello\Application;
 use App\Trello\controllers\ControllerInterface;
+use App\Trello\utils\Renderer\PHPTemplateFactory;
 
 abstract class AbstractController implements ControllerInterface
 {
     protected $params;
     protected $router;
+    protected $application;
 
-    public function __construct(AltoRouter $router, array $params = [])
+    public function __construct(Application $application, array $params = [])
     {
         $this->params = $params;
-        $this->router = $router;
+        $this->router = $application->getRouter();
+        $this->application = $application;
     }
 
-    protected function render($view, $data = []): void
+    public function render($view, $data = [])
     {
-        extract($data);
-        $router = $this->router;
-        include __DIR__ .'/../views/'.$view.'.php';
+        
+        $renderer = (new PHPTemplateFactory())->getRenderer();
+        $data['router'] = $this->router;
+        echo $renderer->render(__DIR__ .'/../views/'.$view.'.php', $data);
     }
 
     protected function sendJson($data)
