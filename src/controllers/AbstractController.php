@@ -24,8 +24,18 @@ abstract class AbstractController implements ControllerInterface
 
     public function render($view, $data = [])
     {
-        
-        $renderer = (new SmartyTemplateFactory())->getRenderer();
+        $templateEngine = $this->application->getConfig()['TEMPLATE_ENGINE'] ?? 'SMARTY';
+        switch($templateEngine) {
+            case 'PHP':
+                $renderer = (new PHPTemplateFactory()) ->getRenderer();
+                break;
+            case 'SMARTY':
+                $renderer = (new SmartyTemplateFactory())->getRenderer();
+                break;
+            default:
+                throw new \Exception("Le moteur de template $templateEngine n'existe pas");
+                break;
+        }
         $data['router'] = $this->router;
         echo $renderer->render($view, $data);
     }
