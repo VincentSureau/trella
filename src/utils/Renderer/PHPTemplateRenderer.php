@@ -8,6 +8,7 @@ class PHPTemplateRenderer implements TemplateRenderer
     {
         extract($arguments);
 
+        $templateString = dirname(__DIR__, 2).'/views/'.$templateString.'.php';
         ob_start();
         include($templateString);
         $result = ob_get_contents();

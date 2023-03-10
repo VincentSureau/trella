@@ -7,11 +7,11 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     </head>
     <body>
-        <?php include "_navbar.php" ?>
+        {include "_navbar.php"}
         <section class="section">
             <div class="container">
                 <h1 class="title">
-                    Hello {{Prénom}}
+                    Hello Prénom
                 </h1>
                 <p class="subtitle">
                    Bienvenue sur ton <strong>Trellä</strong>!
@@ -36,24 +36,24 @@
                         <button class="button is-link">Ajouter</button>
                     </div>
                 </form>
-                <?php foreach($projects as $chunk): ?>
+                {foreach $projects as $chunk}
                     <div class="tile is-ancestor">
-                        <?php foreach($chunk as $project): ?>
-                            <a class="tile is-parent is-4" href="<?= $router->generate('board_index', ['project_id' => $project->getId()]); ?>">
+                        {foreach $chunk as $project}
+                            <a class="tile is-parent is-4" href="{$router->generate('board_index', ['project_id' => $project->getId()])}">
                                 <article class="tile is-child notification is-primary">
-                                    <form action="<?= $router->generate('board_delete', ['project_id' => $project->getId()]); ?>" method="POST">
+                                    <form action="{$router->generate('board_delete', ['project_id' => $project->getId()])}" method="POST">
                                         <input type="hidden" name="page" value="delete_project">
-                                        <input type="hidden" name="projectId" value="<?= $project->getId() ?>">
+                                        <input type="hidden" name="projectId" value="{$project->getId()}">
                                         <button type="submit" class="delete"></button>
                                     </form>
 
-                                    <p class="title"><?= $project->getTitle() ?></p>
-                                    <p class="subtitle"><?= $project->getDescription() ?></p>
+                                    <p class="title">{$project->getTitle()}</p>
+                                    <p class="subtitle">{$project->getDescription()}</p>
                                 </article>
                             </a>
-                        <?php endforeach ?>
+                        {/foreach}
                     </div>
-                <?php endforeach ?>
+                {/foreach}
             </div>
         </section>
     </body>
