@@ -38,12 +38,12 @@ class Application
         return $this->router;
     }
 
-    private function getConfig()
+    public function getConfig()
     {
-        if(empty($config)) {
+        if(empty($this->config)) {
             return parse_ini_file(__DIR__ . '/..'. '/config.ini');
         }
-        return $this->getConfig();
+        return $this->config;
     }
 
     public function run()

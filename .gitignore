@@ -1,2 +1,6 @@
 vendor/
 config.ini
+src/views_c/*
+!src/views_c/.gitkeep
+src/cache/*
+!src/cache/.gitkeep

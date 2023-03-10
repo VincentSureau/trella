@@ -15,6 +15,7 @@
     ],
     "require": {
         "symfony/var-dumper": "^6.2",
-        "altorouter/altorouter": "^2.0"
+        "altorouter/altorouter": "^2.0",
+        "smarty/smarty": "^4.3"
     }
 }
